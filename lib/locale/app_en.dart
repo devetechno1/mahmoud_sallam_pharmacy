@@ -282,7 +282,7 @@ const Map<String, String> enLangs = {
   "featured_products_ucf": "Featured Products",
   "all_products_ucf": "All Products",
   "search_in_app_name": "Search In {app_name}...",
-  "app_name": "Deve Techno Store",
+  "app_name": "Mahmoud Sallam Care",
   "no_carousel_image_found": "No carousel image found",
   "no_category_found": "No category found",
   "categories_ucf": "Categories",

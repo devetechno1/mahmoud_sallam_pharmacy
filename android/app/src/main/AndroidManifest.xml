@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.devefinancestore">
+    package="com.mahmoudsallamcare">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -64,8 +64,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="v9.11.0.devefinance.com" />
-                <data android:scheme="https" android:host="v9.11.0.devefinance.com" />
+                <data android:scheme="http" android:host="mahmoudsallamcare.com" />
+                <data android:scheme="https" android:host="mahmoudsallamcare.com" />
             </intent-filter>
 
             <meta-data

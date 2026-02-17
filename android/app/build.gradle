@@ -31,7 +31,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.devefinancestore"
+    namespace "com.mahmoudsallamcare"
     compileSdk 36
     ndkVersion "28.2.13676358"
 
@@ -58,7 +58,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.devefinancestore"
+        applicationId "com.mahmoudsallamcare"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()

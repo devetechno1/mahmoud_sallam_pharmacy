@@ -4,7 +4,7 @@
         "details": [
             {
                 "appIDs": [
-                    "4VV9G2S9AS.com.devefinance"
+                    "4VV9G2S9AS.com.mahmoudsallamcare"
                 ],
                 "paths": [
                     "*"
@@ -19,7 +19,7 @@
     },
     "webcredentials": {
         "apps": [
-            "4VV9G2S9AS.com.devefinance"
+            "4VV9G2S9AS.com.mahmoudsallamcare"
         ]
     }
 }

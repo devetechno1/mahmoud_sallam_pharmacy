@@ -3,7 +3,7 @@
 <plist version="1.0">
 	<dict>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
-		<true />
+		<true/>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleExecutable</key>
@@ -13,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>Deve Techno Store</string>
+		<string>Mahmoud Sallam Care</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -37,7 +37,7 @@
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
 				<key>CFBundleURLName</key>
-				<string>v9.11.0.devefinance.com</string>
+				<string>mahmoudsallamcare.com</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
 					<string>https</string>
@@ -47,7 +47,7 @@
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
 				<key>CFBundleURLName</key>
-				<string>v9.11.0.devefinance.com</string>
+				<string>mahmoudsallamcare.com</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
 					<string>http</string>
@@ -65,7 +65,7 @@
 		<key>FacebookClientToken</key>
 		<string></string>
 		<key>FacebookDisplayName</key>
-		<string>Deve Techno Store</string>
+		<string>Mahmoud Sallam Care</string>
 		<key>LSApplicationCategoryType</key>
 		<string></string>
 		<key>LSApplicationQueriesSchemes</key>
@@ -82,9 +82,9 @@
 			<string>waze</string>
 		</array>
 		<key>LSRequiresIPhoneOS</key>
-		<true />
+		<true/>
 		<key>LSSupportsOpeningDocumentsInPlace</key>
-		<true />
+		<true/>
 		<key>NSAppleMusicUsageDescription</key>
 		<string>Users receive a small alert tone after changing the order delivery status</string>
 		<key>NSBluetoothAlwaysUsageDescription</key>
@@ -102,8 +102,7 @@
 		<key>NSLocationAlwaysUsageDescription</key>
 		<string>User can set address using phone location</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>This app requires access to your location to help you add accurate delivery
-			addresses</string>
+		<string>This app requires access to your location to help you add accurate delivery addresses</string>
 		<key>NSMotionUsageDescription</key>
 		<string>This app will use your motion data for your active tasks</string>
 		<key>NSPhotoLibraryUsageDescription</key>
@@ -111,14 +110,14 @@
 		<key>NSSpeechRecognitionUsageDescription</key>
 		<string>User can send message or search data by voice</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true />
+		<true/>
 		<key>UIBackgroundModes</key>
 		<array>
 			<string>fetch</string>
 			<string>remote-notification</string>
 		</array>
 		<key>UIFileSharingEnabled</key>
-		<true />
+		<true/>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
@@ -137,10 +136,10 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
-		<false />
+		<false/>
 		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 		<string>Your location is required to get current location for add or update item</string>
 		<key>UIStatusBarHidden</key>
-		<false />
+		<false/>
 	</dict>
 </plist>

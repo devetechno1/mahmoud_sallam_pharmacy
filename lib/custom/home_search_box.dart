@@ -81,7 +81,7 @@ class HomeSearchBox extends StatelessWidget {
           child: GestureDetector(
             onTap: is_logged_in.$
                 ? () {
-                  Navigator.push(
+                    Navigator.push(
                     context,
                     PageAnimation.fadeRoute(const NotificationList()),
                   ).then((_) {
