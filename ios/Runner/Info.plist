@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<true />
+		<key>CFBundleDevelopmentRegion</key>
+		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<key>CFBundleExecutable</key>
+		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundleName</key>
+		<string>Deve Techno Store</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleShortVersionString</key>
+		<string>$(FLUTTER_BUILD_NAME)</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<!-- <dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.620463100599-ddb91en0ain1g4lim7ub25ced6lm6flr</string>
+				<string>fb</string>
+			</array>
+		</dict> -->
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>v9.11.0.devefinance.com</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>https</string>
+				</array>
+			</dict>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>v9.11.0.devefinance.com</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>http</string>
+				</array>
+			</dict>
+		</array>
+		<key>CFBundleVersion</key>
+		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>FDAllFilesDownloadedMessage</key>
+		<string>All files have been downloaded</string>
+		<key>FDMaximumConcurrentTasks</key>
+		<integer>5</integer>
+		<key>FacebookAppID</key>
+		<string></string>
+		<key>FacebookClientToken</key>
+		<string></string>
+		<key>FacebookDisplayName</key>
+		<string>Deve Techno Store</string>
+		<key>LSApplicationCategoryType</key>
+		<string></string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>mailto</string>
+			<string>ms-outlook</string>
+			<string>googlegmail</string>
+			<string>tel</string>
+			<string>facetime</string>
+			<string>sms</string>
+			<string>http</string>
+			<string>https</string>
+			<string>comgooglemaps</string>
+			<string>waze</string>
+		</array>
+		<key>LSRequiresIPhoneOS</key>
+		<true />
+		<key>LSSupportsOpeningDocumentsInPlace</key>
+		<true />
+		<key>NSAppleMusicUsageDescription</key>
+		<string>Users receive a small alert tone after changing the order delivery status</string>
+		<key>NSBluetoothAlwaysUsageDescription</key>
+		<string>This app uses Bluetooth to connect with wearables.</string>
+		<key>NSBluetoothPeripheralUsageDescription</key>
+		<string>This app uses Bluetooth to connect with wearables.</string>
+		<key>NSCalendarsUsageDescription</key>
+		<string>User can choose date from calender</string>
+		<key>NSCameraUsageDescription</key>
+		<string>User can upload and change his profile picture from Camera</string>
+		<key>NSContactsUsageDescription</key>
+		<string>Allow Contact Access For Details</string>
+		<key>NSDocumentDirectory</key>
+		<integer>1</integer>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>User can set address using phone location</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app requires access to your location to help you add accurate delivery
+			addresses</string>
+		<key>NSMotionUsageDescription</key>
+		<string>This app will use your motion data for your active tasks</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>User can upload and change her profile picture from PhotoLibrary</string>
+		<key>NSSpeechRecognitionUsageDescription</key>
+		<string>User can send message or search data by voice</string>
+		<key>UIApplicationSupportsIndirectInputEvents</key>
+		<true />
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
+		</array>
+		<key>UIFileSharingEnabled</key>
+		<true />
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIMainStoryboardFile</key>
+		<string>Main</string>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<false />
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>Your location is required to get current location for add or update item</string>
+		<key>UIStatusBarHidden</key>
+		<false />
+	</dict>
+</plist>

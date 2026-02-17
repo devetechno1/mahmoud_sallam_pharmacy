@@ -1,0 +1,1 @@
+typedef OnPress = void Function();

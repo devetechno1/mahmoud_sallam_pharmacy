@@ -1,0 +1,41 @@
+# Gradle & build
+.gradle/
+**/build/
+**/captures/
+**/outputs/
+.gradle/
+build/
+
+# Local properties
+local.properties
+key.properties
+
+# Gradle wrapper
+/gradlew
+/gradlew.bat
+gradle-wrapper.jar
+gradle/
+
+# Flutter Android plugin
+GeneratedPluginRegistrant.java
+
+# Keystore files (don't ever commit them)
+**/*.jks
+**/*.keystore
+
+# IntelliJ/Android Studio
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+*.swp
+
+# Others
+*.apk
+*.aar
+*.lock
+
