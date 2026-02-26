@@ -13,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>Mahmoud Sallam Care</string>
+		<string>Mahmoud Sallam</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -65,7 +65,7 @@
 		<key>FacebookClientToken</key>
 		<string></string>
 		<key>FacebookDisplayName</key>
-		<string>Mahmoud Sallam Care</string>
+		<string>Mahmoud Sallam</string>
 		<key>LSApplicationCategoryType</key>
 		<string></string>
 		<key>LSApplicationQueriesSchemes</key>

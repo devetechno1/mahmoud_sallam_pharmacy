@@ -1,5 +1,5 @@
 name: active_ecommerce_cms_demo_app
-description: This is the flutter mobile application for Mahmoud Sallam Care
+description: This is the flutter mobile application for Mahmoud Sallam
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
 # flutter pub upgrade --major-versions
-version: 1.0.1+1
+version: 1.0.3+3
 
 environment:
   sdk: ">=3.5.0 <4.0.0"

@@ -2,10 +2,9 @@ import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/all_products.
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/auction_products.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/best_selling_section_sliver.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/brand_list.dart';
-import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/featured_category/featured_category_horizontal.dart';
-import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/new_products_list_sliver.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/today_deal.dart';
 import 'package:flutter/material.dart';
+import '../../../custom/featured_category/enum_feature_category.dart';
 import '../../../custom/home_banners/home_banners_one.dart';
 import '../../../custom/home_banners/home_banners_three.dart';
 import '../../../custom/home_banners/home_banners_two.dart';
@@ -28,7 +27,7 @@ class ClassicScreen extends StatelessWidget {
         const TodaysDealProductsSliverWidget(),
 
         //Featured category-----------------------
-        const CategoryListHorizontal(),
+         buildFeaturedCategory(context),
 
         //BannerList---------------------
 
@@ -48,7 +47,7 @@ class ClassicScreen extends StatelessWidget {
         // if(homeData.isFeaturedProductInitial || homeData.featuredProductList.isNotEmpty)
         const BestSellingSectionSliver(),
         //newProducts-----------------------------
-        const NewProductsListSliver(),
+        // const NewProductsListSliver(),
         //BannerList---------------------
         const SliverToBoxAdapter(child: HomeBannersThree()),
 

@@ -16,7 +16,7 @@ final List<Messenger> messengerList = [
   Messenger(
     id: "2",
     image: AppImages.loginRegistration,
-    name: "Mahmoud Sallam Care",
+    name: "Mahmoud Sallam",
   ),
   Messenger(
     id: "3",

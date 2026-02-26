@@ -178,7 +178,7 @@ const Map<String, String> arLangs = {
   "featured_products_ucf": "المنتجات المميزة",
   "all_products_ucf": "جميع المنتجات",
   "search_in_app_name": "ابحث في {app_name} ...",
-  "app_name": "Mahmoud Sallam Care",
+  "app_name": "محمود سلام",
   "no_carousel_image_found": "لم يتم العثور على صورة دوّارة",
   "no_category_found": "لم يتم العثور على فئة",
   "categories_ucf": "الفئات",

@@ -3,11 +3,10 @@ import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/all_products.
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/auction_products.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/best_selling_section_sliver.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/brand_list.dart';
-import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/featured_category/featured_category_horizontal.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/flash_sale.dart';
-import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/new_products_list_sliver.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/home/widgets/today_deal.dart';
 import 'package:flutter/material.dart';
+import '../../../custom/featured_category/enum_feature_category.dart';
 import '../../../custom/home_banners/home_banners_one.dart';
 import '../../../custom/home_banners/home_banners_three.dart';
 import '../../../custom/home_banners/home_banners_two.dart';
@@ -24,7 +23,7 @@ class ReClassicScreen extends StatelessWidget {
     return GlobalHomeScreenWidget(
       slivers: <Widget>[
         const SliverToBoxAdapter(child: HomeCarouselSlider()),
-        const CategoryListHorizontal(),
+         buildFeaturedCategory(context),
 
         TodaysDealProductsSliverWidget(
           title: 'todays_deal_ucf'.tr(context: context),
@@ -59,7 +58,7 @@ class ReClassicScreen extends StatelessWidget {
         //Best Selling-------------------
         const BestSellingSectionSliver(),
         //newProducts-----------------------------
-        const NewProductsListSliver(),
+        // const NewProductsListSliver(),
         //BannerList---------------------
         const SliverToBoxAdapter(child: HomeBannersThree()),
         //auctionProducts------------

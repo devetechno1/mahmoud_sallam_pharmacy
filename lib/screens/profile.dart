@@ -20,7 +20,8 @@ import 'package:active_ecommerce_cms_demo_app/screens/blog_list_screen.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/classified_ads/classified_ads.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/classified_ads/my_classified_ads.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/coupon/coupons.dart';
-import 'package:active_ecommerce_cms_demo_app/screens/customer_support_screen.dart' show CustomerSupportScreen;
+import 'package:active_ecommerce_cms_demo_app/screens/customer_support_screen.dart'
+    show CustomerSupportScreen;
 import 'package:active_ecommerce_cms_demo_app/screens/digital_product/digital_products.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/filter.dart';
 import 'package:active_ecommerce_cms_demo_app/screens/flash_deal/flash_deal_list.dart';
@@ -71,6 +72,9 @@ class _ProfileState extends State<Profile> {
   // ScrollController _mainScrollController = ScrollController();
   // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  // ✅ max width for tablet/desktop-like screens
+  static const double _contentMaxWidth = 680;
+
   int? _cartCounter = 0;
   String _cartCounterString = "00";
   int? _wishlistCounter = 0;
@@ -81,18 +85,12 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     if (is_logged_in.$ == true) {
       fetchAll();
     }
   }
-
-  // void dispose() {
-  //   _mainScrollController.dispose();
-  //   super.dispose();
-  // }
 
   Future<void> _onPageRefresh() async {
     reset();
@@ -156,13 +154,9 @@ class _ProfileState extends State<Profile> {
 
     var newtxt = (txt == "" || txt == null.toString()) ? blankZeros : txt;
 
-    // print(txt + " " + default_length.toString());
-    // print(newtxt);
-
     if (default_length > txt.length) {
       newtxt = leadingZeros + newtxt;
     }
-    //print(newtxt);
 
     return newtxt;
   }
@@ -174,7 +168,6 @@ class _ProfileState extends State<Profile> {
     _wishlistCounterString = "00";
     _orderCounter = 0;
     _orderCounterString = "00";
-    // setState(() {});
   }
 
   List<int> listItem = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -187,9 +180,18 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection:
-          app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
+      textDirection: app_language_rtl.$! ? TextDirection.rtl : TextDirection.ltr,
       child: buildView(context),
+    );
+  }
+
+  // ✅ helper: keep content centered with max width (tablet fix)
+  Widget _wrapConstrained(Widget child) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: _contentMaxWidth),
+        child: child,
+      ),
     );
   }
 
@@ -200,13 +202,14 @@ class _ProfileState extends State<Profile> {
       child: Stack(
         children: [
           Container(
-              height: DeviceInfo(context).height! / 1.6,
-              width: DeviceInfo(context).width,
-              color: Theme.of(context).primaryColor,
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                AppImages.backgroundOne,
-              )),
+            height: DeviceInfo(context).height! / 1.6,
+            width: DeviceInfo(context).width,
+            color: Theme.of(context).primaryColor,
+            alignment: Alignment.topRight,
+            child: Image.asset(
+              AppImages.backgroundOne,
+            ),
+          ),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: buildCustomAppBar(context),
@@ -228,7 +231,6 @@ class _ProfileState extends State<Profile> {
 
   CustomScrollView buildBodyChildren() {
     return CustomScrollView(
-      // controller: _mainScrollController,
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       slivers: [
@@ -236,10 +238,10 @@ class _ProfileState extends State<Profile> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
-              buildCountersRow(),
-              buildHorizontalSettings(),
-              buildSettingAndAddonsHorizontalMenu(),
-              buildBottomVerticalCardList(),
+              _wrapConstrained(buildCountersRow()),
+              _wrapConstrained(buildHorizontalSettings()),
+              _wrapConstrained(buildSettingAndAddonsHorizontalMenu()),
+              _wrapConstrained(buildBottomVerticalCardList()),
             ]),
           ),
         )
@@ -251,7 +253,6 @@ class _ProfileState extends State<Profile> {
     return PreferredSize(
       preferredSize: Size(DeviceInfo(context).width!, 92),
       child: Container(
-        // color: Colors.green,
         child: SafeArea(
           child: Column(
             children: [
@@ -276,10 +277,6 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-
-              // Container(
-              //   margin: EdgeInsets.symmetric(vertical: 8),
-              //   width: DeviceInfo(context).width,height: 1,color: MyTheme.medium_grey_50,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: buildAppbarSection(),
@@ -300,27 +297,6 @@ class _ProfileState extends State<Profile> {
           .copyWith(boxShadow: [const BoxShadow(spreadRadius: 0.08)]),
       child: Column(
         children: [
-          // if (false)
-          //   // dead_code
-          //   Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       buildBottomVerticalCardListItem(
-          //           "assets/coupon.png", 'coupons_ucf'.tr(context: context),
-          //           onPressed: () {}),
-          //       Divider(
-          //         thickness: 1,
-          //         color: MyTheme.light_grey,
-          //       ),
-          //       buildBottomVerticalCardListItem("assets/favoriteseller.png",
-          //           'favorite_seller_ucf'.tr(context: context),
-          //           onPressed: () {}),
-          //       Divider(
-          //         thickness: 1,
-          //         color: MyTheme.light_grey,
-          //       ),
-          //     ],
-          //   ),
           BottomVerticalCardListItemWidget(
             AppImages.products,
             'top_selling_products_ucf'.tr(context: context),
@@ -342,9 +318,11 @@ class _ProfileState extends State<Profile> {
               'wholesale_product'.tr(context: context),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const WholesalesScreen()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const WholesalesScreen(),
+                  ),
+                );
               },
             ),
           BottomVerticalCardListItemWidget(
@@ -352,12 +330,11 @@ class _ProfileState extends State<Profile> {
             'blog_list_ucf'.tr(context: context),
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BlogListScreen()));
+                context,
+                MaterialPageRoute(builder: (context) => const BlogListScreen()),
+              );
             },
           ),
-
           BottomVerticalCardListItemWidget(
             AppImages.download,
             'all_digital_products_ucf'.tr(context: context),
@@ -367,19 +344,19 @@ class _ProfileState extends State<Profile> {
               }));
             },
           ),
-
           BottomVerticalCardListItemWidget(
-              AppImages.coupon, 'coupons_ucf'.tr(context: context),
-              onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const Coupons();
-            }));
-          }),
-          //flash_deals
+            AppImages.coupon,
+            'coupons_ucf'.tr(context: context),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const Coupons();
+              }));
+            },
+          ),
           Selector<HomeProvider, bool>(
             selector: (_, provider) => provider.isFlashDealInitial,
             builder: (context, isFlashDealInitial, child) {
-              if (isFlashDealInitial != false)
+              if (isFlashDealInitial != false) {
                 return BottomVerticalCardListItemWidget(
                   AppImages.flashDeal,
                   'flash_deal_ucf'.tr(context: context),
@@ -390,32 +367,20 @@ class _ProfileState extends State<Profile> {
                     }));
                   },
                 );
+              }
               return emptyWidget;
             },
           ),
-
-          //flash_deals
           BottomVerticalCardListItemWidget(
-              AppImages.brands, 'brands_ucf'.tr(context: context),
-              onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const Filter(selected_filter: "brands");
-            }));
-          }),
-
-          // // this is addon
-          // if (false)
-          //   BottomVerticalCardListItemWidget(
-          //     AppImages.auction,
-          //     'on_auction_products_ucf'.tr(context: context),
-          //     onPressed: () {
-          //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-          //         return const AuctionProducts();
-          //       }));
-          //     },
-          //   ),
-          if (AppConfig.businessSettingsData.classifiedProduct &&
-              is_logged_in.$)
+            AppImages.brands,
+            'brands_ucf'.tr(context: context),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const Filter(selected_filter: "brands");
+              }));
+            },
+          ),
+          if (AppConfig.businessSettingsData.classifiedProduct && is_logged_in.$)
             BottomVerticalCardListItemWidget(
               AppImages.myClassified,
               'my_classified_ads_ucf'.tr(context: context),
@@ -425,7 +390,6 @@ class _ProfileState extends State<Profile> {
                 }));
               },
             ),
-/////
           if (AppConfig.businessSettingsData.classifiedProduct)
             BottomVerticalCardListItemWidget(
               AppImages.classifiedProduct,
@@ -436,7 +400,6 @@ class _ProfileState extends State<Profile> {
                 }));
               },
             ),
-
           if (AppConfig.businessSettingsData.lastViewedProductActivation &&
               is_logged_in.$)
             BottomVerticalCardListItemWidget(
@@ -448,19 +411,6 @@ class _ProfileState extends State<Profile> {
                 }));
               },
             ),
-
-          // // this is addon auction product
-          // if (false)
-
-          // BottomVerticalCardListItemWidget(
-          //   AppImages.auction,
-          //   'on_auction_products_ucf'.tr(context: context),
-          //   onPressed: () {
-          //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-          //       return const AuctionProducts();
-          //     }));
-          //   },
-          // ),
           if (auction_addon_installed.$) const AuctionTileWidget(),
           if (AppConfig.businessSettingsData.classifiedProduct)
             BottomVerticalCardListItemWidget(
@@ -474,9 +424,7 @@ class _ProfileState extends State<Profile> {
                 }));
               },
             ),
-
-          if (is_logged_in.$ &&
-              (AppConfig.businessSettingsData.classifiedProduct))
+          if (is_logged_in.$ && (AppConfig.businessSettingsData.classifiedProduct))
             BottomVerticalCardListItemWidget(
               AppImages.followSeller,
               'followed_sellers_ucf'.tr(context: context),
@@ -486,7 +434,6 @@ class _ProfileState extends State<Profile> {
                 }));
               },
             ),
-
           BottomVerticalCardListItemWidget(
             AppImages.delete,
             'privacy_policy_ucf'.tr(context: context),
@@ -511,14 +458,16 @@ class _ProfileState extends State<Profile> {
               onPressed: deleteWarningDialog,
               showDivider: true,
             ),
-            if (is_logged_in.$)
-            BottomVerticalCardListItemWidget(            
+          if (is_logged_in.$)
+            BottomVerticalCardListItemWidget(
               icon: Icons.support_agent_sharp,
               AppImages.delete,
               'customer_support'.tr(context: context),
-              onPressed:(){ Navigator.push(context, MaterialPageRoute(builder: (context) {
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const CustomerSupportScreen();
-                }));},
+                }));
+              },
               showDivider: false,
             ),
         ],
@@ -526,8 +475,6 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  // This section show after counter section
-  // change Language, Edit Profile and Address section
   Widget buildHorizontalSettings() {
     return Container(
       margin: const EdgeInsets.only(top: AppDimensions.paddingLarge),
@@ -535,17 +482,20 @@ class _ProfileState extends State<Profile> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           buildHorizontalSettingItem(
-              true, AppImages.language, 'language_ucf'.tr(context: context),
-              () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const ChangeLanguage();
-                },
-              ),
-            );
-          }),
+            true,
+            AppImages.language,
+            'language_ucf'.tr(context: context),
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const ChangeLanguage();
+                  },
+                ),
+              );
+            },
+          ),
           InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -560,57 +510,58 @@ class _ProfileState extends State<Profile> {
                   width: 16,
                   color: MyTheme.white,
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
+                const SizedBox(height: 5),
                 Text(
                   'currency_ucf'.tr(context: context),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      fontSize: 10,
-                      color: MyTheme.white,
-                      fontWeight: FontWeight.w500),
+                    fontSize: 10,
+                    color: MyTheme.white,
+                    fontWeight: FontWeight.w500,
+                  ),
                 )
               ],
             ),
           ),
           buildHorizontalSettingItem(
-              is_logged_in.$,
-              AppImages.edit,
-              'edit_profile_ucf'.tr(context: context),
-              is_logged_in.$
-                  ? () {
-                      final bool isPhone =
-                          user_phone.$.trim().isNotEmpty == true &&
-                              AppConfig
-                                  .businessSettingsData.otpProviders.isNotEmpty;
-                      AIZRoute.push(
-                        context,
-                        ProfileEdit(),
-                        isPhone ? user_phone.$.trim() : user_email.$.trim(),
-                        null,
-                        isPhone,
-                      ).then((value) {
-                        onPopped(value);
-                      });
-                    }
-                  : () => showLoginWarning()),
+            is_logged_in.$,
+            AppImages.edit,
+            'edit_profile_ucf'.tr(context: context),
+            is_logged_in.$
+                ? () {
+                    final bool isPhone =
+                        user_phone.$.trim().isNotEmpty == true &&
+                            AppConfig
+                                .businessSettingsData.otpProviders.isNotEmpty;
+                    AIZRoute.push(
+                      context,
+                      ProfileEdit(),
+                      isPhone ? user_phone.$.trim() : user_email.$.trim(),
+                      null,
+                      isPhone,
+                    ).then((value) {
+                      onPopped(value);
+                    });
+                  }
+                : () => showLoginWarning(),
+          ),
           buildHorizontalSettingItem(
-              is_logged_in.$,
-              AppImages.location,
-              'address_ucf'.tr(context: context),
-              is_logged_in.$
-                  ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const AddressScreen(goHome: false);
-                          },
-                        ),
-                      );
-                    }
-                  : () => showLoginWarning()),
+            is_logged_in.$,
+            AppImages.location,
+            'address_ucf'.tr(context: context),
+            is_logged_in.$
+                ? () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const AddressScreen(goHome: false);
+                        },
+                      ),
+                    );
+                  }
+                : () => showLoginWarning(),
+          ),
         ],
       ),
     );
@@ -632,16 +583,15 @@ class _ProfileState extends State<Profile> {
             width: 16,
             color: isLogin ? MyTheme.white : MyTheme.blue_grey,
           ),
-          const SizedBox(
-            height: 5,
-          ),
+          const SizedBox(height: 5),
           Text(
             text,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 10,
-                color: isLogin ? MyTheme.white : MyTheme.blue_grey,
-                fontWeight: FontWeight.w500),
+              fontSize: 10,
+              color: isLogin ? MyTheme.white : MyTheme.blue_grey,
+              fontWeight: FontWeight.w500,
+            ),
           )
         ],
       ),
@@ -657,193 +607,231 @@ class _ProfileState extends State<Profile> {
 
   Future deleteWarningDialog() {
     return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text(
-                'delete_account_warning_title'.tr(context: context),
-                style: const TextStyle(
-                    fontSize: 15, color: MyTheme.dark_font_grey),
-              ),
-              content: Text(
-                'delete_account_warning_description'.tr(context: context),
-                style: const TextStyle(
-                    fontSize: 13, color: MyTheme.dark_font_grey),
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      pop(context);
-                    },
-                    child: Text('no_ucf'.tr(context: context))),
-                TextButton(
-                    onPressed: () {
-                      pop(context);
-                      deleteAccountReq();
-                    },
-                    child: Text('yes_ucf'.tr(context: context)))
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'delete_account_warning_title'.tr(context: context),
+          style: const TextStyle(
+            fontSize: 15,
+            color: MyTheme.dark_font_grey,
+          ),
+        ),
+        content: Text(
+          'delete_account_warning_description'.tr(context: context),
+          style: const TextStyle(
+            fontSize: 13,
+            color: MyTheme.dark_font_grey,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              pop(context);
+            },
+            child: Text('no_ucf'.tr(context: context)),
+          ),
+          TextButton(
+            onPressed: () {
+              pop(context);
+              deleteAccountReq();
+            },
+            child: Text('yes_ucf'.tr(context: context)),
+          )
+        ],
+      ),
+    );
   }
 
   Widget buildSettingAndAddonsHorizontalMenu() {
-    return Container(
-      margin: const EdgeInsets.only(top: AppDimensions.paddingNormal),
-      width: DeviceInfo(context).width,
-      height: 225,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: const [BoxShadow(spreadRadius: 0.08)],
-          borderRadius: BorderRadius.circular(AppDimensions.radiusHalfSmall)),
-      child: GridView(
-            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 40),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                    mainAxisSpacing: 0,
-                    crossAxisSpacing: 0,
-                  childAspectRatio: 1.5,
-   ),
-        children: [
-          // if (AppConfig.businessSettingsData.walletSystem)
-            buildSettingAndAddonsHorizontalMenuItem(
-              AppImages.wallet,
-              'my_wallet_ucf'.tr(context: context),
-              () {
-                Navigator.push(
-                    context, PageAnimation.fadeRoute(const Wallet()));
-              },
-            ),
-          buildSettingAndAddonsHorizontalMenuItem(
-            AppImages.orders,
-            'orders_ucf'.tr(context: context),
-            is_logged_in.$
-                ? () {
-                    Navigator.push(
-                        context, PageAnimation.fadeRoute(const OrderList()));
-                  }
-                : () => null,
-          ),
-          buildSettingAndAddonsHorizontalMenuItem(
-            AppImages.heart,
-            'my_wishlist_ucf'.tr(context: context),
-            is_logged_in.$
-                ? () {
-                    Navigator.push(
-                        context, PageAnimation.fadeRoute(Wishlist()));
-                  }
-                : () => null,
-          ),
-          if (club_point_addon_installed.$)
-            buildSettingAndAddonsHorizontalMenuItem(
-              AppImages.points,
-              'club_point_ucf'.tr(context: context),
-              is_logged_in.$
-                  ? () {
-                      Navigator.push(
-                          context, PageAnimation.fadeRoute(Clubpoint()));
-                    }
-                  : () => null,
-            ),
-          badges.Badge(
-            showBadge: is_logged_in.$,
-            position: badges.BadgePosition.topEnd(
-                top: 2, end: AppDimensions.paddingLarge),
-            badgeStyle: badges.BadgeStyle(
-              shape: badges.BadgeShape.circle,
-              badgeColor: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(AppDimensions.radiusNormal),
-              padding: const EdgeInsets.all(AppDimensions.paddingSmallExtra),
-            ),
-            ignorePointer: true,
-            badgeContent: Consumer<UnReadNotificationCounter>(
-              builder: (context, notification, child) {
-                return Text(
-                  "${notification.unReadNotificationCounter}",
-                  style: const TextStyle(fontSize: 10, color: Colors.white),
-                );
-              },
-            ),
-            child: buildSettingAndAddonsHorizontalMenuItem(
-              AppImages.notification,
-              'notification_ucf'.tr(context: context),
-              is_logged_in.$
-                  ? () {
-                      Navigator.push(context,
-                              PageAnimation.fadeRoute(const NotificationList()))
-                          .then((value) {
-                        onPopped(value);
-                      });
-                    }
-                  : () => null,
-            ),
-          ),
-             buildSettingAndAddonsHorizontalMenuItem(
-            AppImages.download,
-            'downloads_ucf'.tr(context: context),
-            is_logged_in.$
-                ? () {
-                    Navigator.push(
-                        context,
-                        PageAnimation.fadeRoute(
-                            const PurchasedDigitalProducts()));
-                  }
-                : () => null,
-          ),
-          if (AppConfig.businessSettingsData.conversationSystem)
-            buildSettingAndAddonsHorizontalMenuItem(
-              AppImages.messages,
-              'messages_ucf'.tr(context: context),
-              is_logged_in.$
-                  ? () {
-                      Navigator.push(
-                          context, PageAnimation.fadeRoute(MessengerList()));
-                    }
-                  : () => null,
-            ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.maxWidth;
 
-          
-          // if (auction_addon_installed.$)
-          // if (false)
-          if (AppConfig.businessSettingsData.classifiedProduct)
-            buildSettingAndAddonsHorizontalMenuItem(
-              AppImages.classifiedProduct,
-              'classified_products'.tr(context: context),
-              is_logged_in.$
-                  ? () {
-                      Navigator.push(context,
-                          PageAnimation.fadeRoute(const MyClassifiedAds()));
-                    }
-                  : () => null,
-            ),
+        // ✅ adaptive grid for tablets
+        int crossAxisCount = 3;
+        if (w >= 900) {
+          crossAxisCount = 6;
+        } else if (w >= 720) {
+          crossAxisCount = 5;
+        } else if (w >= 600) {
+          crossAxisCount = 4;
+        }
 
-       
+        final double horizontalPadding = w >= 600 ? 16 : 40;
 
-                    if (refund_addon_installed.$)
-            buildSettingAndAddonsHorizontalMenuItem(
-              AppImages.refund,
-              'refund_requests_ucf'.tr(context: context),
-              is_logged_in.$
-                  ? () {
-                      Navigator.push(
-                          context, PageAnimation.fadeRoute(RefundRequest()));
-                    }
-                  : () => null,
+        return Container(
+          margin: const EdgeInsets.only(top: AppDimensions.paddingNormal),
+          width: DeviceInfo(context).width,
+          height: 225,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: const [BoxShadow(spreadRadius: 0.08)],
+            borderRadius:
+                BorderRadius.circular(AppDimensions.radiusHalfSmall),
+          ),
+          child: GridView(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: horizontalPadding,
             ),
-          // buildSettingAndAddonsHorizontalMenuItem(
-          //   AppImages.upload,
-          //   'upload_file_ucf'.tr(context: context),
-          //   is_logged_in.$
-          //       ? () {
-          //           Navigator.push(
-          //               context, PageAnimation.fadeRoute(const UploadFile()));
-          //         }
-          //       : () => null,
-          // ),
-          // notification and badge contents
-        ],
-      ),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              mainAxisSpacing: 0,
+              crossAxisSpacing: 0,
+              childAspectRatio: w >= 600 ? 1.7 : 1.5,
+            ),
+            children: [
+              buildSettingAndAddonsHorizontalMenuItem(
+                AppImages.wallet,
+                'my_wallet_ucf'.tr(context: context),
+                () {
+                  Navigator.push(
+                    context,
+                    PageAnimation.fadeRoute(const Wallet()),
+                  );
+                },
+              ),
+              buildSettingAndAddonsHorizontalMenuItem(
+                AppImages.orders,
+                'orders_ucf'.tr(context: context),
+                is_logged_in.$
+                    ? () {
+                        Navigator.push(
+                          context,
+                          PageAnimation.fadeRoute(const OrderList()),
+                        );
+                      }
+                    : () => null,
+              ),
+              buildSettingAndAddonsHorizontalMenuItem(
+                AppImages.heart,
+                'my_wishlist_ucf'.tr(context: context),
+                is_logged_in.$
+                    ? () {
+                        Navigator.push(
+                          context,
+                          PageAnimation.fadeRoute(Wishlist()),
+                        );
+                      }
+                    : () => null,
+              ),
+              if (club_point_addon_installed.$)
+                buildSettingAndAddonsHorizontalMenuItem(
+                  AppImages.points,
+                  'club_point_ucf'.tr(context: context),
+                  is_logged_in.$
+                      ? () {
+                          Navigator.push(
+                            context,
+                            PageAnimation.fadeRoute(Clubpoint()),
+                          );
+                        }
+                      : () => null,
+                ),
+              badges.Badge(
+                showBadge: is_logged_in.$,
+                position: badges.BadgePosition.topEnd(
+                  top: 2,
+                  end: AppDimensions.paddingLarge,
+                ),
+                badgeStyle: badges.BadgeStyle(
+                  shape: badges.BadgeShape.circle,
+                  badgeColor: Theme.of(context).primaryColor,
+                  borderRadius:
+                      BorderRadius.circular(AppDimensions.radiusNormal),
+                  padding: const EdgeInsets.all(
+                    AppDimensions.paddingSmallExtra,
+                  ),
+                ),
+                ignorePointer: true,
+                badgeContent: Consumer<UnReadNotificationCounter>(
+                  builder: (context, notification, child) {
+                    return Text(
+                      "${notification.unReadNotificationCounter}",
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    );
+                  },
+                ),
+                child: buildSettingAndAddonsHorizontalMenuItem(
+                  AppImages.notification,
+                  'notification_ucf'.tr(context: context),
+                  is_logged_in.$
+                      ? () {
+                          Navigator.push(
+                            context,
+                            PageAnimation.fadeRoute(
+                              const NotificationList(),
+                            ),
+                          ).then((value) {
+                            onPopped(value);
+                          });
+                        }
+                      : () => null,
+                ),
+              ),
+              buildSettingAndAddonsHorizontalMenuItem(
+                AppImages.download,
+                'downloads_ucf'.tr(context: context),
+                is_logged_in.$
+                    ? () {
+                        Navigator.push(
+                          context,
+                          PageAnimation.fadeRoute(
+                            const PurchasedDigitalProducts(),
+                          ),
+                        );
+                      }
+                    : () => null,
+              ),
+              if (AppConfig.businessSettingsData.conversationSystem)
+                buildSettingAndAddonsHorizontalMenuItem(
+                  AppImages.messages,
+                  'messages_ucf'.tr(context: context),
+                  is_logged_in.$
+                      ? () {
+                          Navigator.push(
+                            context,
+                            PageAnimation.fadeRoute(MessengerList()),
+                          );
+                        }
+                      : () => null,
+                ),
+              if (AppConfig.businessSettingsData.classifiedProduct)
+                buildSettingAndAddonsHorizontalMenuItem(
+                  AppImages.classifiedProduct,
+                  'classified_products'.tr(context: context),
+                  is_logged_in.$
+                      ? () {
+                          Navigator.push(
+                            context,
+                            PageAnimation.fadeRoute(const MyClassifiedAds()),
+                          );
+                        }
+                      : () => null,
+                ),
+              if (refund_addon_installed.$)
+                buildSettingAndAddonsHorizontalMenuItem(
+                  AppImages.refund,
+                  'refund_requests_ucf'.tr(context: context),
+                  is_logged_in.$
+                      ? () {
+                          Navigator.push(
+                            context,
+                            PageAnimation.fadeRoute(RefundRequest()),
+                          );
+                        }
+                      : () => null,
+                ),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -854,8 +842,6 @@ class _ProfileState extends State<Profile> {
   ) {
     return Container(
       alignment: Alignment.center,
-      //color: Colors.red,
-      // width: DeviceInfo(context).width / 4,
       child: InkWell(
         onTap: is_logged_in.$
             ? onTap
@@ -869,22 +855,20 @@ class _ProfileState extends State<Profile> {
               img,
               width: 16,
               height: 16,
-              color: is_logged_in.$
-                  ? MyTheme.dark_font_grey
-                  : MyTheme.medium_grey_50,
+              color:
+                  is_logged_in.$ ? MyTheme.dark_font_grey : MyTheme.medium_grey_50,
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             Text(
               text,
               textAlign: TextAlign.center,
               maxLines: 1,
               style: TextStyle(
-                  color: is_logged_in.$
-                      ? MyTheme.dark_font_grey
-                      : MyTheme.medium_grey_50,
-                  fontSize: 11.5),
+                color: is_logged_in.$
+                    ? MyTheme.dark_font_grey
+                    : MyTheme.medium_grey_50,
+                fontSize: 11.5,
+              ),
             )
           ],
         ),
@@ -893,33 +877,55 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget buildCountersRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        buildCountersRowItem(
-          _cartCounterString,
-          'in_your_cart_all_lower'.tr(context: context),
-          onTap: () => Navigator.push(context,
-              PageAnimation.fadeRoute(const Cart(has_bottomnav: false))),
-        ),
-        buildCountersRowItem(
-          _wishlistCounterString,
-          'in_your_wishlist_all_lower'.tr(context: context),
-          onTap: () =>
-              Navigator.push(context, PageAnimation.fadeRoute(Wishlist())),
-        ),
-        buildCountersRowItem(
-          _orderCounterString,
-          'your_ordered_all_lower'.tr(context: context),
-          onTap: () => Navigator.push(
-              context, PageAnimation.fadeRoute(const OrderList())),
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.maxWidth;
+        final bool isWide = w >= 600;
+
+        final double itemWidth = isWide ? (w / 3) - 12 : DeviceInfo(context).width! / 3.5;
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            buildCountersRowItem(
+              _cartCounterString,
+              'in_your_cart_all_lower'.tr(context: context),
+              width: itemWidth,
+              onTap: () => Navigator.push(
+                context,
+                PageAnimation.fadeRoute(const Cart(has_bottomnav: false)),
+              ),
+            ),
+            buildCountersRowItem(
+              _wishlistCounterString,
+              'in_your_wishlist_all_lower'.tr(context: context),
+              width: itemWidth,
+              onTap: () => Navigator.push(
+                context,
+                PageAnimation.fadeRoute(Wishlist()),
+              ),
+            ),
+            buildCountersRowItem(
+              _orderCounterString,
+              'your_ordered_all_lower'.tr(context: context),
+              width: itemWidth,
+              onTap: () => Navigator.push(
+                context,
+                PageAnimation.fadeRoute(const OrderList()),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  Widget buildCountersRowItem(String counter, String title,
-      {Future<void> Function()? onTap}) {
+  Widget buildCountersRowItem(
+    String counter,
+    String title, {
+    double? width,
+    Future<void> Function()? onTap,
+  }) {
     return InkWell(
       onTap: is_logged_in.$ && onTap != null
           ? () => onTap.call().then((_) => onPopped(null))
@@ -928,7 +934,7 @@ class _ProfileState extends State<Profile> {
       child: Container(
         margin: const EdgeInsets.only(top: AppDimensions.paddingLarge),
         padding: const EdgeInsets.symmetric(vertical: 14),
-        width: DeviceInfo(context).width! / 3.5,
+        width: width ?? DeviceInfo(context).width! / 3.5,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppDimensions.radiusHalfSmall),
           color: MyTheme.white,
@@ -940,13 +946,12 @@ class _ProfileState extends State<Profile> {
               counter,
               maxLines: 2,
               style: const TextStyle(
-                  fontSize: 18,
-                  color: MyTheme.dark_font_grey,
-                  fontWeight: FontWeight.bold),
+                fontSize: 18,
+                color: MyTheme.dark_font_grey,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
+            const SizedBox(height: 5),
             Text(
               title,
               maxLines: 2,
@@ -962,20 +967,11 @@ class _ProfileState extends State<Profile> {
 
   Widget buildAppbarSection() {
     return Container(
-      // color: Colors.amber,
       alignment: Alignment.center,
       height: 48,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          /* Container(
-            child: InkWell(
-              //padding: EdgeInsets.zero,
-              onTap: (){
-              Navigator.pop(context);
-            } ,child:Icon(Icons.arrow_back,size: 25,color: MyTheme.white,), ),
-          ),*/
-          // SizedBox(width: 10,),
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 14.0),
             child: Container(
@@ -986,18 +982,19 @@ class _ProfileState extends State<Profile> {
                 borderRadius:
                     BorderRadius.circular(AppDimensions.radiusVeryExtra),
                 border: Border.all(color: MyTheme.white, width: 1),
-                //shape: BoxShape.rectangle,
               ),
               child: is_logged_in.$
                   ? ClipRRect(
                       clipBehavior: Clip.hardEdge,
                       borderRadius: const BorderRadius.all(
-                          Radius.circular(AppDimensions.radiusVeryExtra)),
+                        Radius.circular(AppDimensions.radiusVeryExtra),
+                      ),
                       child: FadeInImage.assetNetwork(
                         placeholder: AppImages.placeholder,
                         image: "${avatar_original.$}",
                         fit: BoxFit.fill,
-                      ))
+                      ),
+                    )
                   : Image.asset(
                       AppImages.profilePlaceholder,
                       height: 48,
@@ -1010,25 +1007,27 @@ class _ProfileState extends State<Profile> {
           const Spacer(),
           Btn.basic(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-            // 	rgb(50,205,50)
             shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(AppDimensions.radiusHalfSmall),
-                side: const BorderSide(color: MyTheme.white)),
+              borderRadius:
+                  BorderRadius.circular(AppDimensions.radiusHalfSmall),
+              side: const BorderSide(color: MyTheme.white),
+            ),
             child: Text(
               is_logged_in.$
                   ? 'logout_ucf'.tr(context: context)
                   : 'login_ucf'.tr(context: context),
               style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500),
+                color: Colors.white,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             onPressed: () {
-              if (is_logged_in.$)
+              if (is_logged_in.$) {
                 onTapLogout(context);
-              else
+              } else {
                 context.push("/login");
+              }
             },
           ),
         ],
@@ -1055,7 +1054,6 @@ class _ProfileState extends State<Profile> {
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Text(
                   "${user_phone.$.trim().isEmpty ? user_email.$ : user_phone.$}",
-                  // "${user_email.$ != "" ? user_email.$ : user_phone.$ != "" ? user_phone.$ : ''}",
                   style: const TextStyle(color: MyTheme.light_grey),
                   textDirection: TextDirection.ltr,
                 ),
@@ -1074,21 +1072,20 @@ class _ProfileState extends State<Profile> {
 
   void loading() {
     showDialog(
-        context: context,
-        builder: (context) {
-          loadingContext = context;
-          return AlertDialog(
-            content: Row(
-              children: [
-                const CircularProgressIndicator(),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text("${'please_wait_ucf'.tr(context: context)}"),
-              ],
-            ),
-          );
-        });
+      context: context,
+      builder: (context) {
+        loadingContext = context;
+        return AlertDialog(
+          content: Row(
+            children: [
+              const CircularProgressIndicator(),
+              const SizedBox(width: 10),
+              Text("${'please_wait_ucf'.tr(context: context)}"),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -1288,6 +1285,10 @@ class BottomVerticalCardListItemWidget extends StatelessWidget {
     this.showDivider = true,
     this.isBold = false,
   });
+
+  // ✅ item max width inside wide screens
+  static const double _itemMaxWidth = 640;
+
   final String img;
   final String label;
   final Function()? onPressed;
@@ -1296,30 +1297,28 @@ class BottomVerticalCardListItemWidget extends StatelessWidget {
   final bool showDivider;
   final bool isBold;
 
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 22),
-        height: 40,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: showDivider
-                ? const BorderSide(
-                    color: MyTheme.light_grey,
-                    width: 1,
-                  )
-                : BorderSide.none,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: _itemMaxWidth),
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 22),
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: showDivider
+                    ? const BorderSide(
+                        color: MyTheme.light_grey,
+                        width: 1,
+                      )
+                    : BorderSide.none,
+              ),
+            ),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
@@ -1338,22 +1337,26 @@ class BottomVerticalCardListItemWidget extends StatelessWidget {
                           size: 18,
                           color: isDisable
                               ? MyTheme.grey_153
-                              : MyTheme.dark_font_grey,                             
+                              : MyTheme.dark_font_grey,
                         ),
                 ),
-                Text(
-                  label,
-                  style: TextStyle(
+                Expanded(
+                  child: Text(
+                    label,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
                       fontSize: 12,
                       color: isDisable
                           ? MyTheme.primaryColor
                           : MyTheme.dark_font_grey,
-                      fontWeight: isBold ? FontWeight.bold : FontWeight.normal
-                          ),
+                      fontWeight:
+                          isBold ? FontWeight.bold : FontWeight.normal,
+                    ),
+                  ),
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:active_ecommerce_cms_demo_app/locale/custom_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../custom/featured_category/enum_feature_category.dart';
 import '../../custom/home_all_products_2.dart';
 import '../../custom/home_carousel_slider.dart';
 import '../../custom/pirated_widget.dart';
@@ -40,7 +41,7 @@ class Home extends StatelessWidget {
         ),
 
         //Featured Categories
-        const CategoryListHorizontal(),
+         buildFeaturedCategory(context),
         const SliverToBoxAdapter(child: HomeBannersTwo()),
         // const  CategoryListVertical(crossAxisCount: 5,),
 
