@@ -65,10 +65,10 @@ class HomeAppBarDelegate extends SliverPersistentHeaderDelegate {
         (1.0 - (shrinkOffset / (maxExtent - minExtent))).clamp(0.0, 1.0);
 
     // Logo Constants
-    const double logoCollapsedHeight = 30.0;
-    const double logoExpandedHeight = 60.0;
-    const double logoCollapsedWidth = 30.0;
-    const double logoExpandedWidth = 60.0;
+    const double logoCollapsedHeight = 40.0;
+    const double logoExpandedHeight = 80.0;
+    const double logoCollapsedWidth = 40.0;
+    const double logoExpandedWidth = 80.0;
 
     // Search Box Constants
     const double searchBoxHeight = 34.0;
@@ -82,7 +82,7 @@ class HomeAppBarDelegate extends SliverPersistentHeaderDelegate {
     // Logo moves DOWN from Expanded Top to Collapsed Center
     // Expanded Top: topPadding + 10
     // Collapsed Top: topPadding + (kToolbarHeight - logoCollapsedHeight) / 2
-    final double logoExpandedTop = topPadding + 10;
+    final double logoExpandedTop = topPadding ;
     final double logoCollapsedTop =
         topPadding + (kToolbarHeight - logoCollapsedHeight) / 2;
     final double logoTop = lerpDouble(logoCollapsedTop, logoExpandedTop, t)!;

@@ -915,4 +915,5 @@ const Map<String, String> arLangs = {
   "how_can_we_help": "كيف يمكننا مساعدتك؟",
   "hello":"أهلًا",
   "please_enter_your_choice":'يرجى كتابة خيارك هنا (على سبيل المثال 3)',
+  "no_orders_found": "لم يتم العثور على طلبات",
 };

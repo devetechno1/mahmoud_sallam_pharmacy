@@ -920,4 +920,5 @@ const Map<String, String> enLangs = {
   "how_can_we_help":"?How can we help",
   "hello":"Hello",
   "please_enter_your_choice":'Please enter your choice (e.g. 3)',
+  "no_orders_found": "No orders found",
 };
